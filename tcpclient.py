@@ -10,6 +10,6 @@ while True:
 
 client.sendall(text.encode('utf-8'))
 t = time.localtime(time.time())
-print (client.recv(1024).decode('utf-8'),"Current Time: ",time.asctime(t))
-
+print ("Result:",client.recv(1024).decode('utf-8'))
+print("Current Time: ",time.asctime(t))
 client.close()

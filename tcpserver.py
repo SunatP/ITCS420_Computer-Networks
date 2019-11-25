@@ -12,9 +12,13 @@ while True:
     data = client.recv(1024)
     if data:
         if data.islower():
-            client.send(data.upper())
+            client.sendall(data.upper())
         elif data.isupper():
-            client.send(data.lower())
+            client.sendall(data.lower())
+        elif data.isupper() is True or data.islower() is True:
+            client.sendall(data)
+        else:
+            client.sendall(data)
     client.close()
 server.close()
 
