@@ -7,13 +7,17 @@ server.listen(5)
 while True:
     print('Waiting for connection . . . ')
     client, address = server.accept()
-    print('... connected from:', address, 'UDP')
-    data = client.recv(1024)
+    print('... connected from:', address)
+    data,address = client.recvfrom(1024)
     if data:
         if data.islower():
-            client.send(data.upper())
+            client.sendall(data.upper())
         elif data.isupper():
-            client.send(data.lower())
+            client.sendall(data.lower())
+        elif data.isupper() is True or data.islower() is True:
+            client.sendall(data)
+        else:
+            client.sendall(data)
     client.close()
 server.close()
 
